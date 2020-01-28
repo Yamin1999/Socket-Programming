@@ -17,8 +17,10 @@ public class object10server {
         ObjectInputStream objectInputStream = new ObjectInputStream(soc.getInputStream());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(soc.getOutputStream());
 
-            frame[] obj = (frame[]) objectInputStream.readObject();
+            //frame obj = (frame) objectInputStream.readObject();
+            frame[] obj=new frame[10];
         for (int i = 0; i < 10; i++) {
+            
             obj[i] = (frame) objectInputStream.readObject();
             objectOutputStream.writeObject(obj[i]);
             obj[i].veiwframe();

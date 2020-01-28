@@ -15,11 +15,28 @@ public class object10client {
         ObjectInputStream objectInputStream = new ObjectInputStream(soc.getInputStream());
 
         frame[] obj = new frame[10];
+        obj[0] = new frame();
+        obj[0].framed((float) 3.5, "Memory", 7, FALSE);
+        obj[1] = new frame();
+        obj[1].framed((float) 4.5, "Register", 9, FALSE);
+        obj[2] = new frame();
+        obj[2].framed((float) 5.5, "Circuit", 11, FALSE);
+        obj[3] = new frame();
+        obj[3].framed((float) 6.5, "Partition", 13, FALSE);
+        obj[4] = new frame();
+        obj[4].framed((float) 7.5, "Process", 15, FALSE);
+        obj[5] = new frame();
+        obj[5].framed((float) 8.5, "Thread", 17, FALSE);
+        obj[6] = new frame();
+        obj[6].framed((float) 9.5, "Flag", 19, FALSE);
+        obj[7] = new frame();
+        obj[7].framed((float) 10.5, "Data", 21, FALSE);
+        obj[8] = new frame();
+        obj[8].framed((float) 11.5, "Swapping", 23, FALSE);
+        obj[9] = new frame();
+        obj[9].framed((float) 12.5, "Algorithm", 25, FALSE);
 
         for (int i = 0; i < 10; i++) {
-            
-            obj[i] = new frame();
-            obj[i].framed((float) 3.5, "DATA", 7, FALSE);
 
             int count = 0, x;
 
@@ -53,10 +70,9 @@ public class object10client {
                 obj[i].Trailer = TRUE;
             }
 
-            objectOutputStream.writeObject(obj);
+            objectOutputStream.writeObject(obj[i]);
             frame returnframe = (frame) objectInputStream.readObject();
 
-            
         }
         soc.close();
     }
