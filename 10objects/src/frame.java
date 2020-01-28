@@ -8,7 +8,7 @@ public class frame implements Serializable {
     int protocolID;
     Boolean Trailer;
 
-    void frame(float header, String data, int protocolID, Boolean Trailer) {
+    void framed(float header, String data, int protocolID, Boolean Trailer) {
         this.header = header;
         this.data = data;
         this.protocolID = protocolID;

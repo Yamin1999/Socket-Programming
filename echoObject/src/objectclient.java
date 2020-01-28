@@ -45,7 +45,7 @@ public class objectclient {
         System.out.println("No. of 1s:" + count);
 
         if (count % 2 != 0) {
-            obj.Tailer = TRUE;
+            obj.Trailer = TRUE;
         }
 
         objectOutputStream.writeObject(obj);
