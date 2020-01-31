@@ -16,7 +16,7 @@ public class echoclient {
 
         while (true) {
 
-            System.out.println("Client : ");
+            System.out.print("Client : ");
             str = userInput.readLine();
 
             out.println(str);
