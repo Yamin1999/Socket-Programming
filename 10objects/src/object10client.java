@@ -1,9 +1,14 @@
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import java.net.Socket;
+import static java.sql.JDBCType.NULL;
+import java.util.Scanner;
 
 public class object10client {
 
@@ -16,25 +21,25 @@ public class object10client {
 
         frame[] obj = new frame[10];
         obj[0] = new frame();
-        obj[0].framed((float) 3.5, "Memory", 7, FALSE);
+        obj[0].framed((float) 3.5, "Memory", 7, FALSE, (float) 0.0);
         obj[1] = new frame();
-        obj[1].framed((float) 4.5, "Register", 9, FALSE);
+        obj[1].framed((float) 4.5, "Register", 9, FALSE, (float) 0.0);
         obj[2] = new frame();
-        obj[2].framed((float) 5.5, "Circuit", 11, FALSE);
+        obj[2].framed((float) 5.5, "Circuit", 11, FALSE, (float) 0.0);
         obj[3] = new frame();
-        obj[3].framed((float) 6.5, "Partition", 13, FALSE);
+        obj[3].framed((float) 6.5, "Partition", 13, FALSE, (float) 0.0);
         obj[4] = new frame();
-        obj[4].framed((float) 7.5, "Process", 15, FALSE);
+        obj[4].framed((float) 7.5, "Process", 15, FALSE, (float) 0.0);
         obj[5] = new frame();
-        obj[5].framed((float) 8.5, "Thread", 17, FALSE);
+        obj[5].framed((float) 8.5, "Thread", 17, FALSE, (float) 0.0);
         obj[6] = new frame();
-        obj[6].framed((float) 9.5, "Flag", 19, FALSE);
+        obj[6].framed((float) 9.5, "Flag", 19, FALSE, (float) 0.0);
         obj[7] = new frame();
-        obj[7].framed((float) 10.5, "Data", 21, FALSE);
+        obj[7].framed((float) 10.5, "Data", 21, FALSE, (float) 0.0);
         obj[8] = new frame();
-        obj[8].framed((float) 11.5, "Swapping", 23, FALSE);
+        obj[8].framed((float) 11.5, "Swapping", 23, FALSE, (float) 0.0);
         obj[9] = new frame();
-        obj[9].framed((float) 12.5, "Algorithm", 25, FALSE);
+        obj[9].framed((float) 12.5, "Algorithm", 25, FALSE, (float) 0.0);
 
         for (int i = 0; i < 10; i++) {
 
@@ -72,6 +77,18 @@ public class object10client {
 
             objectOutputStream.writeObject(obj[i]);
             frame returnframe = (frame) objectInputStream.readObject();
+
+            frame objcheck = (frame) objectInputStream.readObject();
+            objectOutputStream.writeObject(objcheck);
+            
+           
+            System.out.println("\n Acknowledgement from Server side: " + objcheck.acknowledgement + "\n");
+
+            if (objcheck.acknowledgement == obj[i].header) {
+                continue;
+            } else {
+                i--;
+            }
 
         }
         soc.close();

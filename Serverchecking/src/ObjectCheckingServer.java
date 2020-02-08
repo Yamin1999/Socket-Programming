@@ -19,13 +19,15 @@ public class ObjectCheckingServer {
 
         frame obj = (frame) objectInputStream.readObject();
         objectOutputStream.writeObject(obj);
-        
-                int count = 0, x;
-                boolean check;
-
+        System.out.println("\nReceving Client Side data:");
+        obj.veiwframe();
+        int count = 0, x;
+        boolean check;
+        System.out.println("Checking Client side data right or not:\n");
         String s = Integer.toBinaryString((int) obj.protocolID);
 
         int k = Float.floatToIntBits(obj.header);
+        System.out.println(k);
 
         String s1 = Integer.toBinaryString((int) k);
 
@@ -47,38 +49,26 @@ public class ObjectCheckingServer {
         x = onecount(s1);
         count += x;
 
-        System.out.println("No. of 1s:" + count);
+        System.out.println("No. of 1's:" + count + "\n");
 
         if (count % 2 != 0) {
-        if(obj.Trailer == true)
-        {
-            System.out.println("Client Side Message is correct");
+            if (obj.Trailer == true) {
+                System.out.println("!!!!!Client Side Message is correct!!!!!!");
+            } else {
+                System.out.println("!!!!!Client Side Message is Wrong!!!!!!");
+            }
+        } else {
+            if (obj.Trailer == false) {
+                System.out.println("!!!!!!Client Side Message is correct!!!!!!");
+            } else {
+                System.out.println("!!!!!!Client Side Message is Wrong!!!!!");
+            }
         }
-        else
-        {
-           System.out.println("Client Side Message is Worng!!!"); 
-        }
-        }
-        else
-        {        
-        if(obj.Trailer == false)
-        {
-            System.out.println("Client Side Message is correct");
-        }
-        else
-        {
-           System.out.println("Client Side Message is Worng!!!"); 
-        }
-        }
-        
-     
-       // obj.veiwframe();
 
         soc.close();
 
     }
-    
-    
+
     public static int onecount(String x) {
         int count1 = 0;
         for (int i = 0; i < x.length(); i++) {
@@ -90,5 +80,3 @@ public class ObjectCheckingServer {
     }
 
 }
-
-

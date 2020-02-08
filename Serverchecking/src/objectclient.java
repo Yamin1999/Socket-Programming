@@ -42,7 +42,7 @@ public class objectclient {
         x = onecount(s1);
         count += x;
 
-        System.out.println("No. of 1s:" + count);
+        System.out.println("No. of 1's:" + count);
 
         if (count % 2 != 0) {
             obj.Trailer = TRUE;
